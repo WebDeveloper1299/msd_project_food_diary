@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988133577056",
+    "project_id": "fir-analystic-2fc4c",
+    "storage_bucket": "fir-analystic-2fc4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988133577056:android:43a40f30ec39f4e1320e05",
+        "android_client_info": {
+          "package_name": "com.example.msd_project_food_diary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCAlaEtTG0-rBp4NAbWhhupCs-dUPgj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
