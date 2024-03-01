@@ -45,7 +45,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Future<void> _loadData() async {
     username = await SharedPreferenceHelper().getUsername();
     imageList = await handle.RetrieveImage(username);
-  
+  print(imageList);
 
     setState(() {});
   }
@@ -82,7 +82,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       await handle.updateImage(ImageModel(
-          path: pickedFile.path, id: imageList[index].id, username: username!));
+          path: pickedFile.path, id: imageList[index].id, username: username!, comments: imageList[0].comments, title: imageList[0].title));
           await FirebaseAnalytics.instance.logEvent(
             name: "Change Image",
             parameters: {
@@ -92,6 +92,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
           );
       setState(() {
         _loadData();
+
       });
     } else {
       print('No image selected.');
@@ -435,9 +436,6 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                                                                 TextButton(
                                                                   onPressed:
                                                                       () async {
-                                                                    formKey
-                                                                        .currentState!
-                                                                        .save();
                                                                     if (formKey.currentState!.validate()) {
                                                                         Navigator.pop(
                                                                         context);
@@ -463,6 +461,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                                                                     setState(
                                                                         () {
                                                                       _loadData();
+                                                                      print(imageList);
                                                                     });
                                                                   },
                                                                   child:

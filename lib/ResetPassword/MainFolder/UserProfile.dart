@@ -87,6 +87,8 @@ class _UserProfileState extends State<UserProfiles> {
   Future<void> loadUserProfile() async {
     userprofile = await handler.RetriveProfile(Username!);
     setState(() {
+      username.text=Username.toString();
+      usernameUpdate.text=userprofile.isEmpty?"":userprofile[0].username.toString();
       ageupdate.text = userprofile.isEmpty ? "" : userprofile[0].age.toString();
       weightupdate.text = userprofile.isEmpty ? "" : userprofile[0].weight.toString();
       heightupdate.text = userprofile.isEmpty ? "" : userprofile[0].height.toString();
@@ -323,6 +325,7 @@ isloading
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
+                  
                     username.clear();
                     age.clear();
                     weight.clear();
@@ -546,6 +549,7 @@ isloading
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
+                        usernameUpdate.clear();
                         username.text = ""; // Clear username controller
                         ageupdate.clear(); // Clear age controller
                         heightupdate.clear(); // Clear height controller

@@ -10,7 +10,7 @@ import 'package:path/path.dart';
 
 class Databasehelper {
   Future<Database> InitiDb() async {
-    final path = join(await getDatabasesPath(), 'MSD_FoodDairyProrjectdss.db');
+    final path = join(await getDatabasesPath(), 'MSD_Food_DairyProjects.db');
 
     return await openDatabase(
       path,
@@ -387,35 +387,6 @@ Future<void>UpdateUserProfile(UserProfile profile)async{
 }
 
 
-/*
-
-Future<List<Recipe>> RetrieveRecipe(String username) async {
-  final db = await InitiDb();
-  final List<Map<String, Object?>> queryResult = await db.query(
-    "Recipe",
-    where: 'username = ?',
-    whereArgs: [username],
-  );
-  return queryResult.map((e) => Recipe.fromMap(e)).toList();
-}
-
-Future<void> deleteCollectionRecipeName(String name) async {
-  final db = await InitiDb();
-  final List<Map<String, Object?>> queryResult = await db.query(
-    "RecipeCollections",
-    where: 'name = ?',
-    whereArgs: [name],
-  );
-  if (queryResult.isNotEmpty) {
-    // Perform delete operation if the recipe name exists
-    await db.delete("RecipeCollections", where: "name = ?", whereArgs: [name]);
-  } else {
-    // No action needed if the recipe name doesn't exist
-    print("Recipe with name $name not found.");
-  }
-}
-*/
-
 //Insert Username
 
 Future<void> insertUsername(Username username) async {
@@ -449,117 +420,6 @@ Future<String> getUsername(String username) async {
   }
 }
 
- /*
-Future<void> insertRecipeCollections(RecipeCollection recipe) async {
-  final db = await InitiDb();
-   final List<Map<String, Object?>> queryResult = await db.query(
-    "RecipeCollections",
-    where: 'name = ?',
-    whereArgs: [recipe.name],
-  );
-  if(queryResult.length>0){
-    print("duplicate found");
-  }else{
-    
-    await db.insert(
-      'RecipeCollections',
-      recipe.toMap(),
-    );
-  }
-}
-   Future<List<RecipeCollection>> retrieveRecipe(String username) async {
-  // Retrieve data from the database
-  final db = await InitiDb();
-  List<Map<String, dynamic>> recipes = await db.query(
-    'RecipeCollections',
-    where: 'username = ?',
-    whereArgs: [username],
-  );
-
-  // Convert the retrieved data into a list of RecipeCollection objects
-  List<RecipeCollection> recipeCollections = [];
-  for (Map<String, dynamic> recipe in recipes) {
-    // Split the combined string of ingredients and instructions
-   
-
-    // Create a RecipeCollection object with the separate fields
-    RecipeCollection recipeCollection = RecipeCollection(
-      id: recipe['id'], // Assign the id from the database
-      username: recipe['username'],
-      name: recipe['name'],
-      ingredients: recipe['ingredients'],
-      instructions: recipe['instructions'],
-      imageUrl: recipe['imageUrl'],
-      nutritionInfo: NutritionInfos(
-        calories: recipe['calories'].toDouble(),
-        carbohydrates: recipe['carbohydrates'].toDouble(),
-        sugar: recipe['sugar'].toDouble(),
-        sodium: recipe['sodium'].toDouble(),
-        proteins: recipe['proteins'].toDouble(),
-        fats: recipe['fats'].toDouble(),
-        fiber: recipe['fiber'].toDouble(),
-        type: recipe['type'],
-        cooktime: recipe['cooktime'],
-        serving: recipe['serving'],
-        saturatedFats: recipe['saturatedFats'].toDouble(),
-        glucose: recipe['glucose'].toDouble(),
-      ),
-    );
-
-    // Add the created RecipeCollection object to the list
-    recipeCollections.add(recipeCollection);
-  }
-
-  return recipeCollections;
-}
-
-  
-
-  
-
-  Future<Map<String, dynamic>> insertRecipe(Recipe recipe) async {
-    final db = await InitiDb();
-
-    // Check if a recipe with the same name already exists
-    List<Map<String, dynamic>> existingRecipe = await db.query(
-      "Recipe",
-      where: "name = ?",
-      whereArgs: [recipe.name],
-    );
-
-    // If the recipe with the same name already exists, return it
-    if (existingRecipe != null && existingRecipe.isNotEmpty) {
-      return existingRecipe.first;
-    }
-
-    // If the recipe with the same name does not exist, insert the new recipe
-    int insertedId = await db.insert(
-      'Recipe',
-      recipe.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-
-    // Retrieve the inserted recipe and return it
-    Map<String, dynamic>? insertedRecipe = await retrieveRecipeById(insertedId);
-    return insertedRecipe ?? {};
-  }
-
-  Future<Map<String, dynamic>?> retrieveRecipeById(int id) async {
-    final db = await InitiDb();
-    List<Map<String, dynamic>> queryResult = await db.query(
-      'Recipe',
-      where: 'id = ?',
-      whereArgs: [id],
-      limit: 1, // Limit the query to return only one result
-    );
-    if (queryResult.isNotEmpty) {
-      return queryResult.first; // Return the first (and only) map in the list
-    } else {
-      return null; // Return null if no results were found
-    }
-  }
-
-*/
 
 //Insert Records 
 

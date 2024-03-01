@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:msd_project_food_diary/ResetPassword/MainFolder/BMICalculator.dart';
+import 'package:msd_project_food_diary/ResetPassword/MainFolder/CaloriesCalculator.dart';
+import 'package:msd_project_food_diary/ResetPassword/MainFolder/DisplayPicture.dart';
 
 class  ExploreFeature extends StatelessWidget {
   const  ExploreFeature({super.key});
@@ -48,7 +51,9 @@ class  ExploreFeature extends StatelessWidget {
                                         ),
                                       Center(
                                         child: ElevatedButton(onPressed: (){
-                                          
+                                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                                        return BMICalculatorScreen();
+                                      }));
                                         }, child:Text("Find out"), style: ElevatedButton.styleFrom(
                                           backgroundColor: Color(0xFFFF8474)
                                         ),),
@@ -111,8 +116,9 @@ class  ExploreFeature extends StatelessWidget {
                                         ),
                                       Center(
                                         child: ElevatedButton(onPressed: (){
-                                      
-                                                  Navigator.pushNamed(context, "/CaptureDairy");
+                                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                                        return DisplayPictureScreen(imagePath: '');
+                                      }));
 
                                         }, child:Text("Try out"), style: ElevatedButton.styleFrom(
                                           backgroundColor: Color(0xFFFF8474)
@@ -172,7 +178,9 @@ class  ExploreFeature extends StatelessWidget {
                                         ),
                                       Center(
                                         child: ElevatedButton(onPressed: (){
-                                          
+                                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                                        return CaloriesCalculate();
+                                      }));
                                         }, child:Text("Browse"), style: ElevatedButton.styleFrom(
                                           backgroundColor:  Color(0xFFFF8474)
                                         ),),
